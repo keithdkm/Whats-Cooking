@@ -7,8 +7,8 @@
 # developed using Python 3.7.3
 
 ''' A lightweight app to help figure out what's for dinner.  
-Using food2fork.com API, app returns the most popular recipe that uses all 
-of the ingredients entered by the user.
+Enter a list of ingredients and What's Cooking will return the 
+most popular recipe that uses all those ingredients.
 The app then returns all of the other ingredients required to make the
 chosen recipe. If a required ingredient matches two or more of the 
 recipe ingredients, an additional list is generated to warn the user
@@ -20,11 +20,10 @@ from pathlib import Path
 from html import unescape
 
 
-#API_KEY = '382716e48a00037eab1e6ebefd04427e'
 RECIPE_SEARCH_URL = 'https://www.food2fork.com/api/search'
 RECIPE_DETAIL_URL = 'https://www.food2fork.com/api/get'
 # regex for matching user ingredients to recipe ingredients
-RECIPE_REGEX = r"( |^|\,){}(s|es)?(\,|$| )"
+RECIPE_REGEX = r"( |^|\,){}(s|(es))?(\,|$| )"
 # Translation table for filtering punctuation out of recipe ingredients
 # for better matching
 PUNCTUATION = str.maketrans("","","!\"#$%&'()*+-./:;<=>?@[\]^_`{|}~")
@@ -123,7 +122,7 @@ def retrieve_recipe_ingredients(api_key, recipe_id):
             if list(recipe_detail.json().keys())[0] == 'recipe':
             # check that food2fork returned a recipe and not an error     
                 if recipe_detail.json() == []:
-                    # catches empty recipes.  Shouldn't happen
+                    # catches empty recipes.  Unlikely error
                     print ("\nSorry, there were no recipes"
                            " that included all of your ingredients\n")           
                     return
