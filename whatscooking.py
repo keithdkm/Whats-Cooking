@@ -5,6 +5,7 @@
 # April 9th,2019
 #
 # developed using Python 3.7.3
+##################################
 
 ''' A lightweight app to help figure out what's for dinner.  
 Enter a list of ingredients and What's Cooking will return the 
@@ -42,6 +43,7 @@ def fetch_API_key(path):
         f.close()
         return user_key
 
+
 def clean_text(dirty_word):
     # Accepts a string and removes superfluous whitespace 
     # characters and punctuation and makes it lowercase
@@ -62,6 +64,7 @@ def get_user_ingredients():
       
     if entered_ingredients_clean[0] == "quit":
         quit()
+    
     return entered_ingredients_clean
 
 
