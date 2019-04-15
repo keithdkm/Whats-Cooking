@@ -8,11 +8,11 @@
 
 ''' A lightweight app to help figure out what's for dinner.  
 Enter a list of ingredients and What's Cooking will return the 
-most popular recipe that uses all those ingredients.
+most popular recipe that uses all of those ingredients.
 The app then returns all of the other ingredients required to make the
 chosen recipe. If a required ingredient matches two or more of the 
-recipe ingredients, an additional list is generated to warn the user
-about the duplicates
+recipe ingredients, an additional list of the duplicates is generated 
+to warn the user
 '''
 from requests import get
 from re import search,sub
@@ -54,12 +54,14 @@ def get_user_ingredients():
     #accepts user required ingredients at the command line      
     entered_ingredients = input(
         "\nPlease list ingredients you're starting with,"
-        "separated by a comma: ")
+        "separated by a comma. Enter 'quit' to exit: ")
 
     # clean up and list entered ingredients 
     entered_ingredients_clean = [clean_text(ingredient) for ingredient 
                                 in entered_ingredients.split (",")]
       
+    if entered_ingredients_clean[0] == "quit":
+        quit()
     return entered_ingredients_clean
 
 
